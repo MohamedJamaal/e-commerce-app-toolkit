@@ -7,13 +7,21 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { singleProduct } from "../../features/Slices/ProductsSilce";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-function ProductCard({ id, name, type, text, img, price, colors }) {
+function ProductCard({ id, name, text, img, price, colors }) {
+  const dispatch = useDispatch();
+  const { type } = useParams();
   return (
-    <div>
-      <Card className="flex w-85 mb-10">
+    <Link to={`/filteredProducts/${type}/` + id}>
+      <Card
+        className="flex w-85 mb-10"
+        onClick={() => dispatch(singleProduct(id))}
+      >
         <CardHeader color="blue" className="relative h-96">
-          <img src={img} alt={type} className="h-full w-full" />
+          <img src={img} alt="" className="h-full w-full" />
         </CardHeader>
         <CardBody className="text-center">
           <Typography variant="h5" color="gray" className="mb-2">
@@ -38,7 +46,7 @@ function ProductCard({ id, name, type, text, img, price, colors }) {
           </Typography>
         </CardFooter>
       </Card>
-    </div>
+    </Link>
   );
 }
 
