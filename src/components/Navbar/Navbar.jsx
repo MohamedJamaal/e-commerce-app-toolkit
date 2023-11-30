@@ -1,7 +1,15 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
+import Cart from "../Cart/Cart";
+import { useSelector } from "react-redux";
+// import { Link } from "react-router-dom";
 
 function Navbar() {
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(true);
+
   return (
     <>
       <div className="bg-black p-2 w-full">
@@ -11,7 +19,7 @@ function Navbar() {
       </div>
       <div className="flex justify-around items-center">
         <div>
-          <img src={logo} alt="" className="h-28 w-full" />
+          <img src={logo} alt="logo" className="h-28 w-full" />
         </div>
 
         <div className="flex flex-row items-center">
@@ -37,24 +45,35 @@ function Navbar() {
               WhishList
             </p>
           </div>
-          <div className="flex flex-row items-center cursor-pointer">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="#000"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              />
-            </svg>
+          <div
+            className="flex flex-row items-center cursor-pointer"
+            onClick={handleOpen}
+          >
+            {totalAmount > 0 ? (
+              <span className="rounded-full bg-gray-300 px-2 font-inter text-sm mr-1">
+                {totalAmount}
+              </span>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="#000"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                />
+              </svg>
+            )}
+
             <p className="font-inter text-medium font-bold tracking-normal mr-2 leading-none text-center">
               Shopping Cart
             </p>
+            <div>{open && <Cart openModal={open} setOpen={setOpen} />}</div>
           </div>
         </div>
       </div>

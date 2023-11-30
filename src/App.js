@@ -4,10 +4,12 @@ import Main from "./components/Main/Main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FilteredProducts from "./components/FiteredProducts/FilteredProducts";
 import SingleProduct from "./components/FiteredProducts/SingleProduct";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />

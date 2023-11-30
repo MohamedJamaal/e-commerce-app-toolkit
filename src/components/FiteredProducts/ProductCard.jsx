@@ -5,7 +5,6 @@ import {
   CardFooter,
   CardBody,
   Typography,
-  Button,
 } from "@material-tailwind/react";
 import { singleProduct } from "../../features/Slices/ProductsSilce";
 import { Link, useParams } from "react-router-dom";
