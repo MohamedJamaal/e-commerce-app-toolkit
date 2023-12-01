@@ -5,12 +5,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FilteredProducts from "./components/FiteredProducts/FilteredProducts";
 import SingleProduct from "./components/FiteredProducts/SingleProduct";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route
@@ -22,6 +23,7 @@ function App() {
             element={<SingleProduct />}
           />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

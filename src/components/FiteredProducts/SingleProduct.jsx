@@ -8,7 +8,7 @@ function SingleProduct() {
   const product = useSelector((state) => state.products.singleProduct);
   console.log(product);
   const productSize = product[0].size ? product[0].size[0] : "";
-  const productColor = product[0].color;
+  const productColor = product[0].color[0];
 
   const { id } = useParams();
   const [size, setSize] = useState(productSize);

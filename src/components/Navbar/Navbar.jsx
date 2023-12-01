@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../assets/images/logo.png";
 import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -18,9 +19,9 @@ function Navbar() {
         </h3>
       </div>
       <div className="flex justify-around items-center">
-        <div>
+        <Link to="/">
           <img src={logo} alt="logo" className="h-28 w-full" />
-        </div>
+        </Link>
 
         <div className="flex flex-row items-center">
           <button className="font-inter text-medium font-bold tracking-normal mr-4 leading-none text-center">
