@@ -1,8 +1,10 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
 import Cart from "../Cart/Cart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Avatar, Tooltip } from "@material-tailwind/react";
+import { logout } from "../../features/Slices/AuthSlice";
 // import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -11,6 +13,9 @@ function Navbar() {
 
   const handleOpen = () => setOpen(true);
 
+  const user = useSelector((state) => state.auth.user);
+  const { name, image } = user;
+  const dispatch = useDispatch();
   return (
     <>
       <div className="bg-black p-2 w-full">
@@ -24,9 +29,9 @@ function Navbar() {
         </Link>
 
         <div className="flex flex-row items-center">
-          <button className="font-inter text-medium font-bold tracking-normal mr-4 leading-none text-center">
+          {/* <button className="font-inter text-medium font-bold tracking-normal mr-4 leading-none text-center">
             Logout
-          </button>
+          </button> */}
           <div className="flex flex-row items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +80,18 @@ function Navbar() {
               Shopping Cart
             </p>
             <div>{open && <Cart openModal={open} setOpen={setOpen} />}</div>
+          </div>
+          <div className="flex flex-row items-center cursor-pointer pl-4">
+            {image && (
+              <Avatar src={image} alt="avatart" size="sm" className="mr-2" />
+            )}
+            <Tooltip placemetn="bottom" content="Signout">
+              <div onClick={() => dispatch(logout())}>
+                <p className="font-inter text-sm font-medium tracking-normal leading-none">
+                  {name.charAt("0").toUpperCase() + name.slice(1)}{" "}
+                </p>
+              </div>
+            </Tooltip>
           </div>
         </div>
       </div>

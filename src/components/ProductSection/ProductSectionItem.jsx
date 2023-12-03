@@ -37,8 +37,12 @@ function ProductSectionItem({
           </Typography>
           <Typography>{text}</Typography>
           <div className="flex justify-between items-center pt-4">
-            <Typography className="font-medium" textGradient color="gray">
-              Size : {defaultSize}
+            <Typography className="font-medium" textGradient color="red">
+              Size :{" "}
+              <span className="text-gray-400 text-base font-extralight">
+                {" "}
+                {defaultSize}
+              </span>{" "}
             </Typography>
             <Typography className="font-medium" textGradient color="gray">
               color:{" "}

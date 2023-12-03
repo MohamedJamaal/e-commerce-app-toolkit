@@ -6,14 +6,21 @@ import FilteredProducts from "./components/FiteredProducts/FilteredProducts";
 import SingleProduct from "./components/FiteredProducts/SingleProduct";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import Login from "./components/Login/Login";
+import { useSelector } from "react-redux";
 
 function App() {
+  const user = useSelector((state) => state.auth.user);
+  const { authUser } = user;
+  console.log("user", user);
+  console.log("authUser", authUser);
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={authUser ? <Main /> : <Login />} />
+          {/* <Route path="/login" element={authUser ? <Main /> : <Login />} /> */}
           <Route
             path="/filteredProducts/:type"
             element={<FilteredProducts />}

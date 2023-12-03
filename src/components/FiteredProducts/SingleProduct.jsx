@@ -120,7 +120,7 @@ function SingleProduct() {
                       color="gray"
                       size="lg"
                       ripple={true}
-                      variant="outline"
+                      variant="outlined"
                       onClick={() =>
                         dispatch(
                           addToCart({
